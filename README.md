@@ -74,7 +74,7 @@ Each enum is stored using its **name** (e.g., `"DELIVERED"`, `"M"`, `"OPEN"`).
 
 ```bash
 # 1) Clone the repository
-git clone <repo-url>
+git clone https://github.com/Paul0Henr1queSilva/sw-engineering-challenge-bloqit-ph.git
 cd dropoff_bloq
 
 # 2) Create and activate a virtual environment
@@ -88,9 +88,9 @@ pip install -r requirements.txt
 
 ---
 
-## Environment Variables
+# Environment Variables
 
-# Create a .env file (or set environment variables manually):
+## Create a .env file (or set environment variables manually):
 
 ```bash
 DJANGO_DEBUG=true
@@ -101,23 +101,23 @@ DJANGO_DB_NAME=db.sqlite3
 ```
 
 
-## Database Migrations
+# Database Migrations
 
-# First-time setup
+## First-time setup
 
 ```bash
 python manage.py migrate
 python manage.py createsuperuser
 ```
 
-# When you change models
+## When you change models
 
 ```bash
 python manage.py makemigrations
 python manage.py migrate
 ```
 
-# Example workflow
+## Example workflow
 
 ```bash
 # Add new model fields
@@ -130,18 +130,18 @@ python manage.py migrate
 python manage.py runserver 127.0.0.1:8000
 ```
 
-## Authentication (JWT) & Access Tokens
+# Authentication (JWT) & Access Tokens
 
 We use JWT (JSON Web Tokens) for authentication, via djangorestframework-simplejwt.
 Each user generates their own access and refresh tokens.
 
-# 1) Create a user
+## 1) Create a user
 
 ```bash
 python manage.py createsuperuser
 ```
 
-# 2) Obtain tokens (login)
+## 2) Obtain tokens (login)
 
 ```bash
 curl -X POST http://127.0.0.1:8000/api/token/ \
@@ -165,14 +165,14 @@ Response
 }
 ```
 
-# 3) Call any API with the access token
+## 3) Call any API with the access token
 
 ```bash
 curl http://127.0.0.1:8000/api/v1/lockers \
   -H "Authorization: Bearer <ACCESS_TOKEN>"
 ```
 
-# 4) Refresh token
+## 4) Refresh token
 
 ```bash
 curl -X POST http://127.0.0.1:8000/api/token/refresh/ \
@@ -180,7 +180,7 @@ curl -X POST http://127.0.0.1:8000/api/token/refresh/ \
   -d '{"refresh":"<REFRESH_TOKEN>"}'
 ```
 
-# 5) Verify a token
+## 5) Verify a token
 
 ```bash
 curl -X POST http://127.0.0.1:8000/api/token/verify/ \
@@ -188,7 +188,7 @@ curl -X POST http://127.0.0.1:8000/api/token/verify/ \
   -d '{"token":"<ACCESS_OR_REFRESH_TOKEN>"}'
 ```
 
-## API Standards
+# API Standards
 
  - Prefix: /api/v1/
  - UUID Lookups: bloqId, lockerId, rentId
@@ -198,9 +198,9 @@ curl -X POST http://127.0.0.1:8000/api/token/verify/ \
  - Error Codes: 400, 401, 403, 404, 422, etc.
 
 
-## Testing
+# Testing
 
-# Run Tests
+## Run Tests
 
 ```bash
 pytest -v
